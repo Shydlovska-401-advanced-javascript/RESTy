@@ -17,7 +17,6 @@ class App extends React.Component {
 
 
  stateHandler = (count, results, headers) =>{
-   console.log('here', count, results)
    this.setState({count, results, headers});
 
  }
@@ -25,7 +24,7 @@ class App extends React.Component {
   render(){
     return (
     <div className="App">
-       <Header />
+      <Header />
       <Form promt="Go!" handler={this.stateHandler} /> 
       <Results  count ={this.state.count} results={this.state.results} headers={this.state.headers}/>
       {/* <Footer /> */}

@@ -6,7 +6,7 @@ const Results= (props) => {
     return (
 
       <div>
-          <section className="Content">
+          <section data-testid="results" className="Content">
         <h3>Count: {props.count}</h3>
     <p>"Headers": {JSON.stringify(props.headers)}</p>
 

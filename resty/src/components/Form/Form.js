@@ -7,21 +7,15 @@ export default class Form extends React.Component{
         super(props);
         this.state = {
             method: '',
-            url: '',
-            // shouldRender: false
+            url: ''
         }
 
 }
 
  handleSubmit = async event => {
         event.preventDefault();
-    
-        // fetch the data...
     //  https://swapi.dev/api/people/
         let response = await fetch(this.state.url);
-        
-    
-        // fetch done
         let data = await response.json();
         
         let count = data.count;
@@ -33,7 +27,6 @@ export default class Form extends React.Component{
       };
 
     handleUrl = event =>{
-        // let shouldRender = false;
         let url = event.target.value;
         this.setState({url})
     }
@@ -42,26 +35,22 @@ export default class Form extends React.Component{
     handleClick = event => {
         event.preventDefault()
         let url = this.state.url;
-        // let shouldRender = true;
         this.setState({url})
     }
 
     handleMethod = event => {
         event.preventDefault();
-        // let shouldRender = false;
         let method = event.target.id;
         this.setState({method})
     }
 
     render(){
-        // let id = this.state.method.length>0 && this.state.url.length > 0 && this.state.shouldRender ? "outputReady" : "outputNotReady";
-        // console.log(id);
         return (
             <form className="formRender" onSubmit={this.handleSubmit}>
             <div className = 'Form'>
-            <input onChange={this.handleUrl}/>
+            <input data-testid="input" onChange={this.handleUrl}/>
            
-             <button className="goButton">{this.props.promt}</button>
+             <button data-testid="button" lassName="goButton">{this.props.promt}</button>
              
              </div>
              <div>
@@ -69,8 +58,6 @@ export default class Form extends React.Component{
             <button id='post' onClick={this.handleMethod}>POST</button>
             <button id='put' onClick={this.handleMethod}>PUT</button>
             <button id='delete' onClick={this.handleMethod}>DELETE</button>
-            {/* <div id={id}>{this.state.method} {this.state.url}</div> */}
-
             </div>
             </form>
             )
