@@ -1,17 +1,37 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/header';
-import Form from './components/Form/form';
-import Footer from './components/Footer/footer';
+import Header from './components/Header/Header';
+import Form from './components/Form/Form';
+import Results from './components/Results/Results';
+// import Footer from './components/Footer/Footer';
 
-function App() {
-  return (
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      count : 0,
+      results : [],
+      headers: {}
+    }
+  }
+
+
+ stateHandler = (count, results, headers) =>{
+   console.log('here', count, results)
+   this.setState({count, results, headers});
+
+ }
+
+  render(){
+    return (
     <div className="App">
        <Header />
-      <Form /> 
-      <Footer />
+      <Form promt="Go!" handler={this.stateHandler} /> 
+      <Results  count ={this.state.count} results={this.state.results} headers={this.state.headers}/>
+      {/* <Footer /> */}
     </div>
   );
+ }
 }
 
 export default App;
