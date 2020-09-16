@@ -1,6 +1,5 @@
 {
   "name": "resty",
-  "homepage": "/RESTy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
