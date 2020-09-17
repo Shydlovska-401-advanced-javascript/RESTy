@@ -1,65 +1,96 @@
 import React from 'react';
 import  './Form.scss'
+import md5 from 'md5';
 
 
 export default class Form extends React.Component{
     constructor(props){
         super(props);
+        const method = props.request.method || 'get';
+        const url = props.request.url || '';
+        const data = props.request.data ? JSON.stringify(props.request.data) : '';
         this.state = {
-            method: '',
-            url: ''
+            request:{
+                method,
+                url,
+                data
+            }
+           
         }
 
 }
+//    componentDidUpdate(props) {
 
- handleSubmit = async event => {
-        event.preventDefault();
-    //  https://swapi.dev/api/people/
-        let response = await fetch(this.state.url);
-        let data = await response.json();
-        
-        let count = data.count;
-        let results = data.results;
-        let headers ={};
-        response.headers.forEach((val, key) => headers[key] = val);
+//     // we're doing something tricky in this component
+//     // where state is tied to props at particular times
+//     // i.e. at first render and when user clicks on call in history
+//     // so we need this business to determine if anything has really changed
+//     // otherwise we go into react render spiral
 
-        this.props.handler(count, results, headers);
-      };
+//     const nextHash = md5(JSON.stringify(props.request));
+//     const stateHash = md5(JSON.stringify(this.state.request));
+
+//     console.log('props.request', props.request);
+//     console.log('state.request', this.state.request);
+
+//     if (nextHash === stateHash) return;
+
+//     // update state based on props if we've been cleared above
+//     const request = { ...props.request };
+
+//     console.log('componentDidUpdate', request);
+//     // this.setState({ request });
+// }
 
     handleUrl = event =>{
         let url = event.target.value;
-        this.setState({url})
+        const newrequest = { ...this.state.request, url };
+        this.setState({request: newrequest})
     }
 
-
-    handleClick = event => {
-        event.preventDefault()
-        let url = this.state.url;
-        this.setState({url})
+    handleMethod = (method) => {
+        console.log(method, 'method')
+        const newrequest = { ...this.state.request, method };
+        console.log(newrequest, 'req')
+        this.setState({request: newrequest})
     }
 
-    handleMethod = event => {
+    changeBody = (event) =>{
+        try{
+            let data = JSON.parse(event.target.value);
+            const newRequest = { ...this.state.request, data};
+            this.setState({ request: newRequest})
+        }catch (e) { }
+    }
+
+     handleSubmit = async event => {
         event.preventDefault();
-        let method = event.target.id;
-        this.setState({method})
-    }
-
+        //  https://swapi.dev/api/people/
+    
+        this.props.handler(this.state.request);
+    };
+    
     render(){
         return (
-            <form className="formRender" onSubmit={this.handleSubmit}>
             <div className = 'Form'>
-            <input data-testid="input" onChange={this.handleUrl}/>
-           
-             <button data-testid="button" lassName="goButton">{this.props.promt}</button>
-             
-             </div>
-             <div>
-            <button id='get' onClick={this.handleMethod}>GET</button>
-            <button id='post' onClick={this.handleMethod}>POST</button>
-            <button id='put' onClick={this.handleMethod}>PUT</button>
-            <button id='delete' onClick={this.handleMethod}>DELETE</button>
-            </div>
+            <form className="formRender" onSubmit={this.handleSubmit}>
+            <input data-testid="input"
+            type="text"
+            name="url"
+            defaultValue={this.state.request.url}
+            placeholder="http://api.url.here"
+            onChange={this.handleUrl}/>
+             <button data-testid="button">GO!</button>
             </form>
+             <div className="methods">
+             <button id='get' onClick={() => this.handleMethod('get')}>GET</button>
+             <button id='post' onClick={() => this.handleMethod('post')}>POST</button>
+             <button id='put' onClick={() => this.handleMethod('put')}>PUT</button>
+             <button id='delete' onClick={() => this.handleMethod('delete')}>DELETE</button>
+             <textarea name="data" onChange={this.changeBody} defaultValue={this.state.request.data} />
+             </div>
+             </div>
+
             )
         }
 }
