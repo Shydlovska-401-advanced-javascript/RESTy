@@ -1,6 +1,6 @@
 import React from 'react';
 import  './Form.scss'
-import md5 from 'md5';
+// import md5 from 'md5';
 
 
 export default class Form extends React.Component{
