@@ -1,6 +1,5 @@
 import React from 'react';
 import  './Form.scss'
-// import md5 from 'md5';
 
 
 export default class Form extends React.Component{
@@ -19,28 +18,6 @@ export default class Form extends React.Component{
         }
 
 }
-//    componentDidUpdate(props) {
-
-//     // we're doing something tricky in this component
-//     // where state is tied to props at particular times
-//     // i.e. at first render and when user clicks on call in history
-//     // so we need this business to determine if anything has really changed
-//     // otherwise we go into react render spiral
-
-//     const nextHash = md5(JSON.stringify(props.request));
-//     const stateHash = md5(JSON.stringify(this.state.request));
-
-//     console.log('props.request', props.request);
-//     console.log('state.request', this.state.request);
-
-//     if (nextHash === stateHash) return;
-
-//     // update state based on props if we've been cleared above
-//     const request = { ...props.request };
-
-//     console.log('componentDidUpdate', request);
-//     // this.setState({ request });
-// }
 
     handleUrl = event =>{
         let url = event.target.value;
@@ -74,21 +51,26 @@ export default class Form extends React.Component{
         return (
             <div className = 'Form'>
             <form className="formRender" onSubmit={this.handleSubmit}>
-            <input data-testid="input"
+            <input className='input' data-testid="input"
             type="text"
             name="url"
             defaultValue={this.state.request.url}
             placeholder="http://api.url.here"
             onChange={this.handleUrl}/>
+            <div id="go">
              <button data-testid="button">GO!</button>
-            </form>
-             <div className="methods">
-             <button id='get' onClick={() => this.handleMethod('get')}>GET</button>
-             <button id='post' onClick={() => this.handleMethod('post')}>POST</button>
-             <button id='put' onClick={() => this.handleMethod('put')}>PUT</button>
-             <button id='delete' onClick={() => this.handleMethod('delete')}>DELETE</button>
-             <textarea name="data" onChange={this.changeBody} defaultValue={this.state.request.data} />
              </div>
+            </form>
+             <div id="buttons">
+             <button className="methods" id='get' onClick={() => this.handleMethod('get')}>GET</button>
+             <button className="methods" id='post' onClick={() => this.handleMethod('post')}>POST</button>
+             <button className="methods" id='put' onClick={() => this.handleMethod('put')}>PUT</button>
+             <button  className="methods"id='delete' onClick={() => this.handleMethod('delete')}>DELETE</button>
+             </div>
+             <div className='TextArea'>
+             <textarea  name="data" onChange={this.changeBody} defaultValue={this.state.request.data} />
+             </div>
+             
              </div>
 
             )

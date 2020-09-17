@@ -5,20 +5,49 @@
     
 }
 
-input{
+.input{
     background-color: rgb(199, 212, 212);
-    width: 90%;
+    width: 85%;
+    margin-left: 100px;
+    height: 30px;
 }
-
-button{
-    background-color: rgb(187, 180, 180);
-    margin: 10px;
-    width: 80px;
+#go button{ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: 10px;
+    width: 20%;
     height: 30px;
 }
 
-button:hover{
+#go button:hover{
     background-color: #1b2d55;
     color: whitesmoke;
+}
+#buttons{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    // margin-left: 300px;
+}
+.methods{
+    background-color: rgb(187, 180, 180);
+    width: 20%;
+    height: 30px;
+    display: inline-block;
+    margin: 10px;
+
+   
+}
+
+.methods:hover{
+    background-color: #1b2d55;
+    color: whitesmoke;
+}
+
+.TextArea textarea{
+    width: 85%;
+    margin-left: 100px;
+    margin-right: auto;
 }
 

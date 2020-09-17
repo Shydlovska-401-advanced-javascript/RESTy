@@ -12,9 +12,14 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      loading: false,
       request:{},
       history: {}
     }
+  }
+
+toggleLoading = () => {
+    this.setState({ loading: !this.state.loading });
   }
 
 updateHistory(request){
@@ -40,13 +45,13 @@ updateRequest = (request) => {
    
   try {
 
-    // this.toggleLoading();
+    this.toggleLoading();
 
     this.updateRequest(request);
 
     let response = await axios(request);
 
-    // this.toggleLoading();
+    this.toggleLoading();
 
 
     this.updateHistory(request);
@@ -71,7 +76,7 @@ updateRequest = (request) => {
       <Header />
       <Form request={this.state.request} handler={this.fetchResults} /> 
       <History handler={this.fetchResults} calls={this.state.history} />
-      <Results  count ={this.state.count} results={this.state.results} headers={this.state.headers}/>
+      <Results loading={this.state.loading} headers={this.state.headers} results={this.state.results}/>
       {/* <Footer /> */}
     </>
   );
