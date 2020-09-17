@@ -7,10 +7,11 @@ const Results= (props) => {
 
       <div>
           <section data-testid="results" className="Content">
-        <h3>Count: {props.count}</h3>
-    <p>"Headers": {JSON.stringify(props.headers)}</p>
-
+        {/* <h3>Count: {props.count}</h3> */}
+    <p>HEADERS: {JSON.stringify(props.headers)}</p>
+        <p>RESULRS:
         <JSONPretty data={props.results}></JSONPretty>
+        </p>
         </section>
       </div>
     )
