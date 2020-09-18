@@ -10,6 +10,7 @@ import Header from './components/Header/Header';
 // import Results from './components/Results/Results';
 import Help from './components/Help/Help'
 import Main from './components/Main/Main'
+import PageHistory from './components/PageHistory/PageHistory'
 // import Footer from './components/Footer/Footer';
 
 

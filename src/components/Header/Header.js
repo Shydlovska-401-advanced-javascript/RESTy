@@ -15,7 +15,7 @@ const Header = props => {
             <Link data-testid="homelink" to="/">Home</Link>
           </li>
           <li>
-            <NavLink data-testid="classiclink" activeClassName="here" to="/history">History</NavLink>
+            <NavLink data-testid="classiclink" activeClassName="here" to="/pageHistory">History</NavLink>
           </li>
           <li>
             <NavLink data-testid="renderlink" activeClassName="here" to="/help">Help</NavLink>

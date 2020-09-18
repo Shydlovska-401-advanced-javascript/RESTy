@@ -14,7 +14,6 @@ class Main extends React.Component {
         history: {}
       }
     }
-  
   toggleLoading = () => {
       this.setState({ loading: !this.state.loading });
     }
@@ -62,6 +61,8 @@ class Main extends React.Component {
    }
   
    componentDidMount(){
+    console.log(this.props.location.state, "state");
+       console.log("cdfdfdfdf");
      let history = JSON.parse(localStorage.getItem('history'))
      this.setState({history});
    }
