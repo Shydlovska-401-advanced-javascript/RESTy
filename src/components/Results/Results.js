@@ -16,17 +16,26 @@ const Results = (props) => {
                 <div className="loading">
                     <img src={loading} alt="Loading" />
                 </div>
-            ) : (
-                <>
-                <h2>Headers</h2>
-                <ReactJson src={props.headers} />
-                <h2>Results</h2>
-                <ReactJson src={props.results} />
-                </>
-            )
+            ) : results()
         }
      </section>
   );
+function results(){
+    if(props.results){
+        return (
+        <>
+    <h2>Headers</h2>
+    <ReactJson src={props.headers} />
+    <h2>Results</h2>
+    <ReactJson src={props.results} />
+    </>
+    )
+  }
+}
+  
+
+
+
 
 };
   export default Results;
