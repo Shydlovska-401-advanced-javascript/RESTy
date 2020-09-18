@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../../src/Style.scss';
+// import './Main.scss';
+import './Style.scss';
 import md5 from 'md5';
 import axios from 'axios';
 import Form from '../Form/Form';
